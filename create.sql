@@ -1,21 +1,25 @@
 CREATE TABLE publisher(
-        id int PRIMARY KEY AUTOINCREMENT,
-        name text unique not null,
-        country text not null
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    country TEXT NOT NULL
 );
 
 CREATE TABLE books(
-        id int PRIMARY KEY AUTOINCREMENT,
-        title text unique not null,
-        publisher serial references publisher(id) not null
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    publisher INTEGER NOT NULL,
+    FOREIGN KEY (publisher) REFERENCES publisher(id)
 );
 
 CREATE TABLE subjects(
-        id int PRIMARY KEY AUTOINCREMENT,
-        name text unique not null
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
 );
 
 CREATE TABLE books_subjects(
-        book int references books(id) not null,
-        subject int references subjects(id) not null
+    book INTEGER NOT NULL,
+    subject INTEGER NOT NULL,
+    FOREIGN KEY (book) REFERENCES books(id),
+    FOREIGN KEY (subject) REFERENCES subjects(id)
 );
+
